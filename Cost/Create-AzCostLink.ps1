@@ -2,7 +2,9 @@
 param (
   [Parameter()]
   [string]
-  $subid
+  $subid,
+  [string]
+  $linkSuffix
 )
 <# This might work...
 $doc = @{}
@@ -93,5 +95,5 @@ $sw.Write($data)
 $sw.Flush()
 $sw.Close();
 $s = [System.Convert]::ToBase64String($ms.ToArray())
-$link = "https://portal.azure.com#@AarhusUniversitet.onmicrosoft.com/blade/Microsoft_Azure_CostManagement/Menu/open/CostAnalysis/scope/%2Fsubscriptions%2F$subid/view/$([uri]::EscapeDataString($s))"
+$link = "https://portal.azure.com#@$($linkSuffix)/blade/Microsoft_Azure_CostManagement/Menu/open/CostAnalysis/scope/%2Fsubscriptions%2F$subid/view/$([uri]::EscapeDataString($s))"
 $link
